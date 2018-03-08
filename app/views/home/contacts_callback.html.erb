@@ -1,0 +1,27 @@
+<%= form_tag contacts_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <% @contacts.each do  | contact| %>
+    <tbody>
+      <tr>
+        <td><%= contact[:name] %></td>
+        <td><%= contact[:email] %></td>
+        <td><%=contact[:phone_number]%></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+<%= link_to 'New Contact', contacts_new_path %>

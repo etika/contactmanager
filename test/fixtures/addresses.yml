@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lane: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  pincode: MyString
+  contact_id: 1
+
+two:
+  lane: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  pincode: MyString
+  contact_id: 1
