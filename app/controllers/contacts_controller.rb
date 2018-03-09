@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [ :edit, :update, :destroy,:show]
   def index
     @contacts =Contact.where(user_id: 1)
     if params[:search].present?
@@ -10,13 +10,13 @@ class ContactsController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   # GET /contacts/new
-  def new
-    @contact = Contact.new
-  end
+  # def new
+  #   @contact = Contact.new
+  # end
 
   # # GET /contacts/1/edit
   def edit
@@ -24,19 +24,19 @@ class ContactsController < ApplicationController
 
   # # POST /contacts
   # # POST /contacts.json
-  def create
-    @contact = Contact.new(contact_params)
+  # def create
+  #   @contact = Contact.new(contact_params)
 
-    respond_to do |format|
-      if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-        format.json { render :show, status: :created, location: @contact }
-      else
-        format.html { render :new }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @contact.save
+  #       format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+  #       format.json { render :show, status: :created, location: @contact }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @contact.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # # PATCH/PUT /contacts/1
   # # PATCH/PUT /contacts/1.json
@@ -62,9 +62,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  def failure
-    redirect_to :back
-  end
    private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
