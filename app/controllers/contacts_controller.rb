@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_contact, only: [ :edit, :update, :destroy,:show]
+  before_action :set_contact, only: [:edit, :update, :destroy,:show]
 
   def index
     respond_to do |format|
