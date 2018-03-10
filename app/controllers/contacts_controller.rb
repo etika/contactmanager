@@ -1,42 +1,22 @@
 class ContactsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_contact, only: [ :edit, :update, :destroy,:show]
+
   def index
-    @contacts =Contact.where(user_id: 1)
-    if params[:search].present?
-      @search = Contact.search do
-        fulltext params[:search]
-      end
-      @contacts = @search.results
+    respond_to do |format|
+
+      @contacts = params[:search].present? ? search_contact(params[:search]) : Contact.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 30)
+      format.csv { render csv: @contacts }
+      format.html
     end
   end
 
-  # def show
-  # end
-
-  # GET /contacts/new
-  # def new
-  #   @contact = Contact.new
-  # end
+  def show
+  end
 
   # # GET /contacts/1/edit
   def edit
   end
-
-  # # POST /contacts
-  # # POST /contacts.json
-  # def create
-  #   @contact = Contact.new(contact_params)
-
-  #   respond_to do |format|
-  #     if @contact.save
-  #       format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-  #       format.json { render :show, status: :created, location: @contact }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @contact.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # # PATCH/PUT /contacts/1
   # # PATCH/PUT /contacts/1.json
@@ -62,14 +42,21 @@ class ContactsController < ApplicationController
     end
   end
 
-   private
+  private
     # Use callbacks to share common setup or constraints between actions.
-    def set_contact
-      @contact = Contact.find(params[:id])
-    end
+  def set_contact
+    @contact = Contact.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def contact_params
-      params.require(:contact).permit(:name, :email, :phone_number=>[])
+  def contact_params
+    params.require(:contact).permit(:name, :email, :phone_number=>[])
+  end
+
+  def search_contact(search_params)
+    @search = Contact.search do
+      fulltext search_params
     end
+    @contacts = @search.results
+  end
 end

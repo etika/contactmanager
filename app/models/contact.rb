@@ -1,4 +1,6 @@
 class Contact < ActiveRecord::Base
+  self.per_page = 10
+
   has_many :addresses
   belongs_to :user
 
