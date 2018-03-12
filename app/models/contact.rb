@@ -25,10 +25,11 @@ class Contact < ActiveRecord::Base
   end
 
   def self.create_contacts(contacts, id)
-    contacts.each do |contact|
+    # contacts.each do |contact|
+       contact = contacts.first
       phone_number = contact[:phone_numbers].map{|contact| contact.values.last} if contact[:phone_numbers].present?
       contact = Contact.create(name: contact[:name],email: contact[:email], phone_number: phone_number, user_id: id)
       contact.addresses.create(lane: 'Anna', city:'new delhi', state: 'chennai',pincode: '1100011', country: 'india')
-    end
+    # end
   end
 end
