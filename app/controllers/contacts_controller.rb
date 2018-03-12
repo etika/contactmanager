@@ -53,10 +53,10 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :email, :phone_number=>[])
   end
 
-  def search_contact(search_params)
-    @search = Contact.search do
-      fulltext search_params
-    end
-    @contacts = @search.results
-  end
+  # def search_contact(search_params)
+  #   @search = Contact.search do
+  #     fulltext search_params
+  #   end
+  #   @contacts = @search.results
+  # end
 end
