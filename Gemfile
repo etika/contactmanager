@@ -1,5 +1,4 @@
-source 'https://rubygems.org'
-
+source 'http://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.10'
 # Use sqlite3 as the database for Active Record
@@ -30,7 +29,6 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'sidekiq'
 gem 'as_csv', '~> 2.0'
 gem "omnicontacts"
-gem 'thin'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
