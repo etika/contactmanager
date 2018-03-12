@@ -27,10 +27,10 @@ gem 'pg', '~>0.20'
 gem 'pg_search'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-gem 'bootstrap-sass'
 gem 'will_paginate', '~> 3.1.0'
 gem 'sidekiq'
 gem 'as_csv', '~> 2.0'
+gem "omnicontacts"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -52,4 +52,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-gem "omnicontacts"
