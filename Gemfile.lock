@@ -67,11 +67,27 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    elasticsearch (6.0.1)
+      elasticsearch-api (= 6.0.1)
+      elasticsearch-transport (= 6.0.1)
+    elasticsearch-api (6.0.1)
+      multi_json
+    elasticsearch-model (5.0.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (5.0.2)
+    elasticsearch-transport (6.0.1)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.14.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    hashie (3.5.7)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -91,6 +107,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     omnicontacts (0.3.7)
@@ -201,6 +218,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  elasticsearch-model
+  elasticsearch-rails
   jbuilder (~> 2.0)
   jquery-rails
   omnicontacts

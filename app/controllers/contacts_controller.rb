@@ -4,8 +4,7 @@ class ContactsController < ApplicationController
 
   def index
     respond_to do |format|
-      # @contacts = params[:search].present? ? search_contact(params[:search]) :
-      @contacts = Contact.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 30)
+      @contacts = params[:search].present? ? search_contact(params[:search]) :  @contacts = Contact.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 30)
       format.csv { render csv: @contacts }
       format.html
     end
@@ -53,10 +52,12 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :email, :phone_number=>[])
   end
 
-  # def search_contact(search_params)
-  #   @search = Contact.search do
-  #     fulltext search_params
-  #   end
-  #   @contacts = @search.results
-  # end
+  def search_contact(search_params)
+    # @search = Contact.search do
+    #  search_params
+    # end
+    # @contacts = @search.results
+
+      @contacts = Contact.search search_params
+  end
 end

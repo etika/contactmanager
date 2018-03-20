@@ -1,8 +1,18 @@
+require 'elasticsearch/model'
 class Contact < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  # searchkick word_start: [:email]
   self.per_page = 10
 
   has_many :addresses
   belongs_to :user
+
+  # def search_data
+  #   {
+  #     email: email
+  #   }
+  # end
 
   # searchable do
   #   text :name, :email, :phone_number
@@ -23,6 +33,27 @@ class Contact < ActiveRecord::Base
   #     addresses.map(&:country).compact.join(" ")
   #   end
   # end
+
+def self.search(query)
+  __elasticsearch__.search(
+    {
+      query: {
+        multi_match: {
+          query: query,
+          fields: ['email', 'name', 'phone_number', 'addresses.lane' ],
+        }
+      },
+      highlight: {
+        pre_tags: ['<em>'],
+        post_tags: ['</em>'],
+        fields: {
+          title: {},
+          text: {}
+        }
+      }
+    }
+  )
+end
 
   def self.create_contacts(contacts, id)
     contacts.each do |contact|
