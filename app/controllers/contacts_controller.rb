@@ -53,11 +53,6 @@ class ContactsController < ApplicationController
   end
 
   def search_contact(search_params)
-    # @search = Contact.search do
-    #  search_params
-    # end
-    # @contacts = @search.results
-
-      @contacts = Contact.search search_params
+    @contacts = Contact.search(search_params).records
   end
 end
