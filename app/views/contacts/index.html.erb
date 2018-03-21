@@ -24,9 +24,9 @@
             <td><%= contact.name %></td>
             <td><%= contact.email %></td>
             <td><%= contact.phone_number.join(",") if !contact.phone_number.nil? %></td>
-            <td><%#= link_to 'Show', contact %></td>
-            <td><%#= link_to 'Edit', edit_contact_path(contact) %></td>
-            <td><%#= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Show', contact %></td>
+            <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+            <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
     </tbody>
@@ -35,5 +35,5 @@
   <h2> No Result Found </h2>
 <%end%>
 <br>
-<%#= will_paginate @routers %>
+<%= will_paginate @contacts %>
  <%= link_to "CSV", contacts_path(format: "csv") %>
