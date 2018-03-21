@@ -6,6 +6,18 @@ class Contact < ActiveRecord::Base
   has_many :addresses, dependent: :destroy
   belongs_to :user
 
+  after_commit on: [:create] do
+    __elasticsearch__.index_document if self.published?
+  end
+
+  after_commit on: [:update] do
+    __elasticsearch__.update_document if self.published?
+  end
+
+  after_commit on: [:destroy] do
+    __elasticsearch__.delete_document if self.published?
+  end
+
   def as_indexed_json(options={})
     as_json(
       only: [:email, :name, :phone_number],

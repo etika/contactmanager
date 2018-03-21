@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
 
   def index
     respond_to do |format|
-      @contacts = params[:search].present? ? search_contact(params[:search]) :  @contacts = Contact.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 30)
+      @contacts = params[:search].present? ? search_contact(params[:search]) :  @contacts = Contact.where(user_id: current_user.id)
       format.csv { render csv: @contacts }
       format.html
     end
