@@ -39,7 +39,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  GOOGLE_CLIENT_ID = '628302082761-3d0579u5jncbq62nq31hrj9ppc8m1jta.apps.googleusercontent.com'
-  GOOGLE_CLIENT_SECRET = 'fq0joYG3Ai-vCvrX0kdQSXOg'
+  GOOGLE_CLIENT_ID = ENV['GOOGLE_CLIENT_ID']
+  GOOGLE_CLIENT_SECRET = ENV['GOOGLE_CLIENT_SECRET']
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

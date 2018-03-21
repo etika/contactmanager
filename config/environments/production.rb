@@ -82,6 +82,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.default_url_options = { :host => 'https://stormy-ravine-32231.herokuapp.com'}
   config.action_mailer.asset_host = 'https://stormy-ravine-32231.herokuapp.com'
-  GOOGLE_CLIENT_ID = '628302082761-3d0579u5jncbq62nq31hrj9ppc8m1jta.apps.googleusercontent.com'
-  GOOGLE_CLIENT_SECRET = 'fq0joYG3Ai-vCvrX0kdQSXOg'
+  GOOGLE_CLIENT_ID = ENV['GOOGLE_CLIENT_ID']
+  GOOGLE_CLIENT_SECRET = ENV['GOOGLE_CLIENT_SECRET']
 end
