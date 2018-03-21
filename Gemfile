@@ -54,5 +54,6 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'bonsai-elasticsearch-rails'
 end
 ruby "2.3.3"
