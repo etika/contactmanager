@@ -53,6 +53,6 @@ class ContactsController < ApplicationController
   end
 
   def search_contact(search_params)
-    @contacts = Contact.search(search_params).records
+    @contacts = Contact.search(search_params).records.paginate(:page => params[:page])
   end
 end
